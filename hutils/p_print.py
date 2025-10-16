@@ -26,7 +26,8 @@ def _color_str_template(color:ColorCode) -> str:
 
 def function_generator(color: ColorCode) -> Callable[[object], str]:
     def _function(*values: object) -> str:
-        return _color_str_template(color).format(values)
+        # return _color_str_template(color).format(values[0])
+        return _color_str_template(color).format(" ".join(map(str, values)))
     _function.__name__ = color.name
     _function.__doc__ = f"Return a string colored {color.name} in terminal output."
     return _function
